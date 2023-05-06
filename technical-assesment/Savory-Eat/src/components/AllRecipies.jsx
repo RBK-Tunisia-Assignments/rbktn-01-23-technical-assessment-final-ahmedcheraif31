@@ -1,29 +1,59 @@
-import React from "react";
+import React  from "react";
 import "../index.scss";
-const AllRecepies = () => {
+import Onerecepie from "./OneRecipie";
+import axios from "axios";
+
+// import d from"../data/data.json"
+
+
+const AllRecepies = (props) => {
+
+  const deleteHandle = (id) => {
+    axios.delete(`http://localhost:4000/recipe/${id}`)
+      .then(response => {
+       console.log(response.data);
+      })
+  }
+ const updatehandle=(id)=>{
+  axios.put(`http://localhost:4000/recipe/${id}`)
+ }
+
+  
   return (
+
+    props.data.map((e,i)=>
+    <div>
+    <Onerecepie key={i} e={e} />
+
     <div className="card-container">
     
-      <div className="card">
-        <button className="delete">delete</button>
-        <button className="update">update </button>
+      <div className="card" key ={i}>
+        <button className="delete" onClick={deleteHandle}>delete</button>
+        <button className="update" onClick={updatehandle}>update </button>
 
         <>
           <div className="header">
             <img
               className="img"
-              src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGl6emF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+              src={e.recepie_Image}
               alt="food"
             />
           </div>
           <div className="text">
-            <h1 className="food">Pizza</h1>
-            <i> 25 Mins</i> <br />
-            <i> Serves: 5 </i>
+            <h1 className="food">{e.recepie_Name}</h1>
+            <i> Time : {e.Cook_Time}</i> <br />
+            <i>  Serves : {e.Serves} </i>
           </div>
         </>
       </div>
-      <div className="card">
+      </div>
+      </div>
+)
+  );
+};
+export default AllRecepies;
+
+      {/* <div className="card">
         <button className="delete">delete</button>
         <button className="update">update </button>
 
@@ -119,10 +149,7 @@ const AllRecepies = () => {
             <i>Serves : 2 </i>
           </div>
         </>
-      </div>
+      </div> */}
   
-    </div>
-  );
-};
+   
 
-export default AllRecepies;

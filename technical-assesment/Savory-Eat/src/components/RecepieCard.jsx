@@ -23,7 +23,12 @@ const RecepieCard = () => {
           </div>
         </>
       </div>
-      <div className="card">
+      </>
+  );
+};
+
+export default RecepieCard;
+     {/* { <div className="card">
         <button className="delete">delete</button>
         <button className="update">update </button>
 
@@ -123,9 +128,5 @@ const RecepieCard = () => {
             <i>2 Serves </i>
           </div>
         </>
-      </div>
-    </>
-  );
-};
-
-export default RecepieCard;
+      </div>} */}
+   
